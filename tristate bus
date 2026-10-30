@@ -22,12 +22,17 @@ Scenario A (WIDTH=8, single-bit example):
 |    1    | 1  |  1  |    1     |
 +---------+----+-----+----------+
 
-Constraints
 
-    Module name must be: bidir_bus
-    Must accept a parameter WIDTH with default value 8
-    Input ports: data_in (WIDTH-bit), oe (1-bit)
-    Output port: data_out (WIDTH-bit)
-    Inout port: bus (WIDTH-bit)
-    Must be fully synthesizable combinational logic
+Answer 
 
+module biderctional #(paramatersized width = 8 )(
+   input [width-1:0] data_in ,
+   input oe,
+   input [width-1:0] bus,
+   outut [width-1:0] data_out
+);
+
+   assign bus = oe ? data_in : {width{1'bz}};
+   assign data_out = bus;
+
+endmodule 
