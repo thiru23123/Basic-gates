@@ -1,0 +1,33 @@
+15. Bidirectional Tristate Bus Port (Parameterized Width)
+Med.
+Bidirectional Tristate Bus Port (Parameterized Width)
+
+Figure: Bidirectional Tristate Bus Port (Parameterized Width)
+Problem Statement
+
+Bidirectional bus ports are the foundation of GPIO pads, memory data buses, and chip-level I/O interfaces. A bidirectional port allows a single physical wire to carry data in both directions, controlled by an output enable signal. When the output enable is active, the module drives data onto the bus; when inactive, the bus is released to high-impedance state so other drivers can take control.
+
+Design a synthesizable combinational module bidir_bus with a parameterized width.
+
+The module receives a parameterized data input data_in, an output enable signal oe, and exposes a bidirectional bus port bus. It also provides a data output data_out that reflects the current state of the bus. When oe is active, the module drives data_in onto the bus. When oe is inactive, the bus must be in high-impedance state. The data output always reflects the bus state regardless of the output enable. The bus width is controlled by a parameter WIDTH with a default value of 8.
+Input/Output Examples:
+
+Scenario A (WIDTH=8, single-bit example):
++---------+----+-----+----------+
+| data_in | oe | bus | data_out |
++---------+----+-----+----------+
+|    0    | 0  |  z  |    z     |
+|    0    | 1  |  0  |    0     |
+|    1    | 0  |  z  |    z     |
+|    1    | 1  |  1  |    1     |
++---------+----+-----+----------+
+
+Constraints
+
+    Module name must be: bidir_bus
+    Must accept a parameter WIDTH with default value 8
+    Input ports: data_in (WIDTH-bit), oe (1-bit)
+    Output port: data_out (WIDTH-bit)
+    Inout port: bus (WIDTH-bit)
+    Must be fully synthesizable combinational logic
+
