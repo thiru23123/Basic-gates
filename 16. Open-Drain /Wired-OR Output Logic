@@ -1,0 +1,32 @@
+
+16. Open-Drain / Wired-OR Output Logic
+Med.
+Open-Drain / Wired-OR Output Logic
+
+Figure: Open-Drain / Wired-OR Output Logic
+Problem Statement
+
+Open-drain outputs are fundamental to shared bus protocols like I2C, SMBus, and interrupt lines where multiple devices must communicate on a single wire. Unlike a standard push-pull output that can drive both high and low, an open-drain output can only pull the line low or release it to high-impedance state. A pull-up resistor on the bus brings the line HIGH when no device is actively driving it low.
+
+Design a synthesizable combinational module open_drain.
+
+The module receives a single-bit data input data_in and an output enable signal oe. The output is an open-drain driver: when oe is active and data_in requests a low state, the output pulls the line low; in all other cases, the output must be in high-impedance state, allowing the external pull-up resistor to bring the line high. The logic must respond instantaneously to input transitions with zero internal state.
+Input/Output Examples:
+
+Scenario A (Open-Drain Behavior):
++----------+----+-----+
+| data_in  | oe | out |
++----------+----+-----+
+|    0     | 0  |  z  |
+|    0     | 1  |  0  |
+|    1     | 0  |  z  |
+|    1     | 1  |  z  |
++----------+----+-----+
+
+Constraints
+
+    Module name must be: open_drain
+    Input ports: data_in, oe (single-bit each)
+    Output port: out (single-bit, open-drain capable)
+    Output can only pull low or go high-impedance
+    Must be fully synthesizable combinational logic
